@@ -1,0 +1,39 @@
+.App {
+    font-family: 'League Spartan', sans-serif;
+}
+
+h2 {
+    color: white;
+    font-size: 3rem;
+}
+
+.display p {
+    color: white;
+    font-size: 4rem;
+}
+
+.button {
+    margin: 8px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.button p {
+    font-size: 2rem;
+}
+
+.number {
+    box-shadow: 0px 4px var(--t1-key-shadow2);
+}
+
+.del, .reset, .equals p{
+    color:white;
+}
+
+.del, .reset {
+    box-shadow: 0px 4px var(--t1-key-shadow);
+}
+
+.equals {
+    box-shadow: 0px 4px var(--t1-toggle_key-shadow);
+}
