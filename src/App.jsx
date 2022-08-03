@@ -142,10 +142,15 @@ function App() {
     },
   ];
 
+  //initializing state variables
   const [display, setDisplay] = useState("0");
   const [use, setUse] = useState(0);
+  //this variable is used to keep track of how many numbers are on the screen in order to
+  //decide when the del key works and when to replace numbers on the display instead of append them at the end ^
+
   const [theme, setTheme] = useState(theme1);
 
+  //function called to change theme of application
   const changeTheme = (theme) => {
     if (theme === 1) {
       setTheme(theme1);
@@ -156,6 +161,7 @@ function App() {
     }
   };
 
+  //main function used to do calculations on the display
   const calc = (input) => {
     setUse((prev) => prev + 1);
     console.log(use);
@@ -172,6 +178,8 @@ function App() {
       setUse(0);
     }
 
+    //the length of the number on the display is kept below 16
+    //because that is the maximum amount of digits that can fit within the area
     if (display.length <= 16) {
       switch (input) {
         case "del":
@@ -181,7 +189,9 @@ function App() {
           break;
 
         case "=":
-          setDisplay(eval(display));
+          //eval is used to do the main calculation, the result has to be converted into
+          //a string so that .split can be used on it when pressing del
+          setDisplay((x) => (x = eval(x)).toString());
           setUse(0);
           break;
 
@@ -244,39 +254,43 @@ function App() {
   return (
     <div className="App">
       <body
-        className="h-screen flex flex-col justify-center items-center"
+        //the entire application is wrapped within this tag, would definitely do differently now
+        className="h-screen flex flex-col justify-center items-center pb-[7rem]"
         style={theme[0]}
       >
         <div className="calculator h-[35rem] w-[22rem] sm:w-[35rem] sm:h-[37rem]">
           <div className="calc-top flex flex-rows items-center">
             <div className="calc-left w-1/2">
-              <h2 style={theme[8]} className="text-[2rem] sm:text-[3rem]">
+              <h2
+                style={theme[8]}
+                className="text-[2rem] sm:text-[3rem] translate-y-2"
+              >
                 calc
               </h2>
             </div>
             <div className="calc-right w-1/2 flex flex-row justify-end gap-5">
-              <h3 className="translate-y-6 text[2rem]" style={theme[8]}>
+              <h3 className="translate-y-[3rem] text[2rem]" style={theme[8]}>
                 THEME
               </h3>
               <div className="toggle flex flex-col">
                 <h3 className="flex flex-row justify-around" style={theme[8]}>
                   <p
                     onClick={() => changeTheme(1)}
-                    className="cursor-pointer"
+                    className="cursor-pointer h-[3rem] translate-y-[1.5rem]"
                     style={theme[8]}
                   >
                     1
                   </p>
                   <p
                     onClick={() => changeTheme(2)}
-                    className="cursor-pointer"
+                    className="cursor-pointer h-[3rem] translate-y-[1.5rem]"
                     style={theme[8]}
                   >
                     2
                   </p>
                   <p
                     onClick={() => changeTheme(3)}
-                    className="cursor-pointer"
+                    className="cursor-pointer h-[3rem] translate-y-[1.5rem]"
                     style={theme[8]}
                   >
                     3
